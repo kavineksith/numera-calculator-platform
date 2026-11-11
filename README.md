@@ -1,4 +1,4 @@
-# Calculator Platform
+# Numera Calculator Platform
 
 A professional, production-grade multi-mode calculator built with **Next.js 16**, **TypeScript**, **Prisma ORM** (SQLite), and a **pure-TypeScript math engine** using **Decimal.js** for arbitrary-precision arithmetic.
 
