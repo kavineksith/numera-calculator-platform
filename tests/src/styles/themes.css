@@ -1,0 +1,191 @@
+/* src/styles/themes.css
+   Maps the 10 built-in theme colour tokens to CSS custom properties
+   consumed by the calculator UI. Themes are selected by setting
+   `data-theme="..."` on the document root.
+
+   These CSS variables are intentionally scoped to the calculator surface so
+   the surrounding shadcn/ui chrome (which uses the standard --background,
+   --foreground tokens) is unaffected.
+*/
+
+:root,
+[data-theme="Light"] {
+  --calc-bg: #f8fafc;
+  --calc-surface: #ffffff;
+  --calc-btn: #f1f5f9;
+  --calc-btn-operator: #10b981;
+  --calc-btn-operator-fg: #ffffff;
+  --calc-btn-function: #e2e8f0;
+  --calc-btn-memory: #f59e0b;
+  --calc-btn-memory-fg: #ffffff;
+  --calc-btn-destructive: #ef4444;
+  --calc-btn-destructive-fg: #ffffff;
+  --calc-display-bg: #0f172a;
+  --calc-display-fg: #e2e8f0;
+  --calc-text: #0f172a;
+  --calc-accent: #10b981;
+  --calc-accent-fg: #ffffff;
+  --calc-border: #e2e8f0;
+  --calc-radius: 16px;
+  --calc-blur: 0px;
+  --calc-transparency: 1;
+}
+
+[data-theme="Dark"] {
+  --calc-bg: #0f172a;
+  --calc-surface: #1e293b;
+  --calc-btn: #334155;
+  --calc-btn-operator: #10b981;
+  --calc-btn-operator-fg: #04130d;
+  --calc-btn-function: #475569;
+  --calc-btn-memory: #f59e0b;
+  --calc-btn-destructive: #ef4444;
+  --calc-display-bg: #020617;
+  --calc-display-fg: #67e8f9;
+  --calc-text: #f1f5f9;
+  --calc-accent: #10b981;
+  --calc-border: #334155;
+}
+
+[data-theme="Midnight"] {
+  --calc-bg: #020617;
+  --calc-surface: #0f172a;
+  --calc-btn: #1e293b;
+  --calc-btn-operator: #14b8a6;
+  --calc-btn-operator-fg: #03201d;
+  --calc-btn-function: #334155;
+  --calc-btn-memory: #f59e0b;
+  --calc-btn-destructive: #f43f5e;
+  --calc-display-bg: #020617;
+  --calc-display-fg: #67e8f9;
+  --calc-text: #e2e8f0;
+  --calc-accent: #14b8a6;
+  --calc-border: #1e293b;
+  --calc-blur: 6px;
+  --calc-transparency: 0.95;
+}
+
+[data-theme="OLED Black"] {
+  --calc-bg: #000000;
+  --calc-surface: #0a0a0a;
+  --calc-btn: #1a1a1a;
+  --calc-btn-operator: #22c55e;
+  --calc-btn-operator-fg: #021c0a;
+  --calc-btn-function: #262626;
+  --calc-btn-memory: #eab308;
+  --calc-btn-destructive: #ef4444;
+  --calc-display-bg: #000000;
+  --calc-display-fg: #22c55e;
+  --calc-text: #fafafa;
+  --calc-accent: #22c55e;
+  --calc-border: #262626;
+  --calc-radius: 12px;
+}
+
+[data-theme="Classic Calculator"] {
+  --calc-bg: #d6c9a8;
+  --calc-surface: #e6dcc0;
+  --calc-btn: #e6dcc0;
+  --calc-btn-operator: #e07b00;
+  --calc-btn-operator-fg: #1a1a1a;
+  --calc-btn-function: #c4b89a;
+  --calc-btn-memory: #8b7355;
+  --calc-btn-memory-fg: #ffffff;
+  --calc-btn-destructive: #a83232;
+  --calc-display-bg: #1a1a1a;
+  --calc-display-fg: #76e07b;
+  --calc-text: #1a1a1a;
+  --calc-accent: #e07b00;
+  --calc-border: #a8977a;
+  --calc-radius: 8px;
+}
+
+[data-theme="Modern Glass"] {
+  --calc-bg: #1e293b;
+  --calc-surface: #334155;
+  --calc-btn: #475569;
+  --calc-btn-operator: #10b981;
+  --calc-btn-function: #64748b;
+  --calc-btn-memory: #f59e0b;
+  --calc-btn-destructive: #ef4444;
+  --calc-display-bg: #0f172a;
+  --calc-display-fg: #f1f5f9;
+  --calc-text: #f8fafc;
+  --calc-accent: #10b981;
+  --calc-border: #475569;
+  --calc-radius: 20px;
+  --calc-blur: 16px;
+  --calc-transparency: 0.7;
+}
+
+[data-theme="Liquid Glass"] {
+  --calc-bg: #1a103d;
+  --calc-surface: #2d1b69;
+  --calc-btn: #3b2480;
+  --calc-btn-operator: #a855f7;
+  --calc-btn-operator-fg: #1a0a2e;
+  --calc-btn-function: #5b3bb3;
+  --calc-btn-memory: #f59e0b;
+  --calc-btn-destructive: #f43f5e;
+  --calc-display-bg: #1a0a2e;
+  --calc-display-fg: #e9d5ff;
+  --calc-text: #f3e8ff;
+  --calc-accent: #a855f7;
+  --calc-border: #5b3bb3;
+  --calc-radius: 24px;
+  --calc-blur: 24px;
+  --calc-transparency: 0.6;
+}
+
+[data-theme="Transparent"] {
+  --calc-bg: rgba(15, 23, 42, 0.4);
+  --calc-surface: rgba(30, 41, 59, 0.5);
+  --calc-btn: rgba(51, 65, 85, 0.5);
+  --calc-btn-operator: #10b981;
+  --calc-btn-function: rgba(71, 85, 105, 0.5);
+  --calc-btn-memory: #f59e0b;
+  --calc-btn-destructive: #ef4444;
+  --calc-display-bg: rgba(2, 6, 23, 0.7);
+  --calc-display-fg: #f8fafc;
+  --calc-text: #f8fafc;
+  --calc-accent: #10b981;
+  --calc-border: rgba(71, 85, 105, 0.5);
+  --calc-blur: 8px;
+  --calc-transparency: 0.4;
+}
+
+[data-theme="Minimal"] {
+  --calc-bg: #fafafa;
+  --calc-surface: #ffffff;
+  --calc-btn: #f5f5f5;
+  --calc-btn-operator: #171717;
+  --calc-btn-operator-fg: #ffffff;
+  --calc-btn-function: #e5e5e5;
+  --calc-btn-memory: #a3a3a3;
+  --calc-btn-destructive: #dc2626;
+  --calc-display-bg: #0a0a0a;
+  --calc-display-fg: #fafafa;
+  --calc-text: #171717;
+  --calc-accent: #171717;
+  --calc-border: #e5e5e5;
+  --calc-radius: 12px;
+}
+
+[data-theme="High Contrast"] {
+  --calc-bg: #000000;
+  --calc-surface: #000000;
+  --calc-btn: #ffffff;
+  --calc-btn-operator: #ffff00;
+  --calc-btn-operator-fg: #000000;
+  --calc-btn-function: #ffffff;
+  --calc-btn-memory: #00ffff;
+  --calc-btn-memory-fg: #000000;
+  --calc-btn-destructive: #ff0000;
+  --calc-btn-destructive-fg: #ffffff;
+  --calc-display-bg: #000000;
+  --calc-display-fg: #ffffff;
+  --calc-text: #ffffff;
+  --calc-accent: #ffff00;
+  --calc-border: #ffffff;
+  --calc-radius: 6px;
+}

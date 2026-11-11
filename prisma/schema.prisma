@@ -1,0 +1,96 @@
+// Prisma schema for Professional Multi-Mode Calculator Platform
+// Database: SQLite (local persistent storage)
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+/// Completed calculation entries shown in history panel.
+model CalculationHistory {
+  id         String   @id @default(cuid())
+  expression String   // original expression entered by the user
+  result     String   // computed result, stored as string to preserve precision
+  mode       String   // "standard" | "scientific" | "advanced"
+  angleUnit  String?  // "deg" | "rad" (null for standard mode)
+  error      String?  // optional error message if calculation produced an error
+  starred    Boolean  @default(false)
+  createdAt  DateTime @default(now())
+
+  @@index([createdAt])
+  @@index([mode])
+  @@index([starred])
+}
+
+/// Key/value user preferences (general, calculator behavior, audio, etc.)
+model UserPreference {
+  id        String   @id @default(cuid())
+  key       String   @unique
+  value     String   // JSON-serialized structured value
+  updatedAt DateTime @updatedAt
+}
+
+/// Persisted calculator themes (built-in and user-created).
+model Theme {
+  id           String   @id @default(cuid())
+  name         String   @unique
+  description  String?
+  configuration String  // JSON: {colors, fonts, sizing, ...} validated by Zod
+  isDefault    Boolean  @default(false)
+  isBuiltIn    Boolean  @default(false)
+  category     String   @default("personal") // "official" | "developer" | "community" | "personal"
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  @@index([category])
+  @@index([isDefault])
+}
+
+/// Metadata for uploaded background images. Files are stored outside public/.
+model UploadedImage {
+  id           String   @id @default(cuid())
+  filename     String   @unique // randomized internal filename
+  originalName String   // user-supplied filename (sanitized)
+  mimeType     String   // validated MIME type
+  fileSize     Int      // bytes
+  width        Int?
+  height       Int?
+  // optional transformation parameters applied at upload time
+  transforms   String?  // JSON: {crop, rotate, brightness, blur, ...}
+  createdAt    DateTime @default(now())
+
+  @@index([createdAt])
+}
+
+/// Named calculator memory registers (M0..Mn, plus extras if needed).
+model MemoryRegister {
+  id          String   @id @default(cuid())
+  registerName String  @unique // e.g. "M", "M1", ...
+  value       String   // string to preserve precision (Decimal.js compatible)
+  label       String?
+  updatedAt   DateTime @updatedAt
+}
+
+/// Generic application-level settings key/value store (for non-user-scoped config).
+model ApplicationSetting {
+  id        String   @id @default(cuid())
+  key       String   @unique
+  value     String
+  updatedAt DateTime @updatedAt
+}
+
+/// Versioned recovery snapshots for crash/refresh recovery.
+model RecoverySnapshot {
+  id        String   @id @default(cuid())
+  snapshot  String   // JSON of full calculator state (expression, mode, memory, ...)
+  version   Int      // schema version of the snapshot payload
+  source    String   @default("auto") // "auto" | "manual" | "import"
+  createdAt DateTime @default(now())
+
+  @@index([createdAt])
+  @@index([version])
+}
